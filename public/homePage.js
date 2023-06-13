@@ -28,9 +28,9 @@ moneyManager.addMoneyCallback = (data) => {
     ApiConnector.addMoney(data, response => {
         if (response.success) {
           ProfileWidget.showProfile(data);
-          MoneyManager.setMessage("Выполнено успешно");
+          moneyManager.setMessage(response.success, "Выполнено успешно");
         } else {
-            MoneyManager.setMessage("Ошибка");
+          moneyManager.setMessage(response.success, response.error);
         }
     })
 }
@@ -38,9 +38,9 @@ moneyManager.conversionMoneyCallback = (data) => {
     ApiConnector.convertMoney(data, response => {
         if (response.success) {
             ProfileWidget.showProfile(data);
-            MoneyManager.setMessage("Выполнено успешно");
+            moneyManager.setMessage(response.success, "Выполнено успешно");
         } else {
-            MoneyManager.setMessage("Ошибка");
+            moneyManager.setMessage(response.success, response.error);
         }
     })
 }
@@ -48,9 +48,9 @@ moneyManager.sendMoneyCallback = (data) => {
     ApiConnector.transferMoney(data, response => {
         if (response.success) {
             ProfileWidget.showProfile(data);
-            MoneyManager.setMessage("Выполнено успешно");
+            moneyManager.setMessage(response.success, "Выполнено успешно");
         } else {
-            MoneyManager.setMessage("Ошибка");
+            moneyManager.setMessage(response.success, response.error);
         }
     })
 }
@@ -59,7 +59,7 @@ ApiConnector.getFavourites(response => {
     if (response.success) {
         favouritesWidget.clearTable();
         favouritesWidget.filltable(data);
-        favouritesWidget.updateUsersList(data);
+        moneyManager.updateUsersList(data);
     }
 })
 favouritesWidget.addUserCallback = (data) => {
@@ -67,10 +67,10 @@ favouritesWidget.addUserCallback = (data) => {
     if (response.success) {
       favouritesWidget.clearTable();
       favouritesWidget.fillTable(data);
-      favouritesWidget.updateUsersList(data);
-      favouritesWidget.setMessage("Выполнено успешно");
+      moneyManager.updateUsersList(data);
+      favouritesWidget.setMessage(response.success, "Выполнено успешно");
     } else {
-      favouritesWidget.setMessage("Ошибка");
+      favouritesWidget.setMessage(response.success, response.error);
     }
   })
 }
@@ -79,10 +79,10 @@ favouritesWidget.removeUserCallback = (data) => {
       if (response.success) {
         favouritesWidget.clearTable();
         favouritesWidget.fillTable(data);
-        favouritesWidget.updateUsersList(data);
-        favouritesWidget.setMessage("Выполнено успешно");
+        moneyManager.updateUsersList(data);
+        favouritesWidget.setMessage(response.success, "Выполнено успешно");
     } else {
-      favouritesWidget.setMessage("Ошибка");
+      favouritesWidget.setMessage(response.success, response.error);
     }
     })
 }

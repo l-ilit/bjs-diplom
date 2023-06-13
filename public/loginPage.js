@@ -2,7 +2,6 @@
 
 const userForm = new UserForm();
 userForm.loginFormCallback = data => {
-    console.log(JSON.stringify(data));
     ApiConnector.login (data, response => {
       if (response.success) {
         location.reload();
@@ -12,7 +11,6 @@ userForm.loginFormCallback = data => {
 })
 }
 userForm.registerFormCallback = data => {
-    console.log(JSON.stringify(data));
     ApiConnector.register (data, response => {
       if (!response.success) {
         userForm.setLoginErrorMessage(response.error);
